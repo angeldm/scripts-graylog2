@@ -1,0 +1,13 @@
+[Unit]
+Description=graylog-server
+BindTo=network.target
+Requires=elasticsearch.service mongod.service
+
+[Service]
+Type=simple
+User=root
+PIDFile=/var/run/graylog-webserver.pid
+ExecStart=/usr/bin/java -jar /opt/graylog-server/graylog-server.jar -f /etc/graylog.conf -p /var/run/graylog-webserver.pid
+
+[Install]
+WantedBy=multi-user.target
